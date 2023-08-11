@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RouterLink } from '@/router/list-routes';
+import { computed } from 'vue';
 
 interface Props {
   title?: string;
@@ -7,10 +8,12 @@ interface Props {
   isSecondary?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   title: 'CompoApp',
   isSecondary: false,
 });
+
+const links = computed(() => props.links.filter(link => link.visible))
 
 </script>
 
@@ -18,12 +21,11 @@ withDefaults(defineProps<Props>(), {
   <nav>
     <template v-if="!$props.isSecondary">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-      <!-- <span v-if="$props.title">{{ $props.title }}</span> -->
       <span>{{ $props.title }}</span>
     </template>
 
     <RouterLink 
-      v-for="link of $props.links"
+      v-for="link of links"
       :key="link.path"
       :to="link.path">
         {{ link.title }}

@@ -6,7 +6,7 @@ const route = useRoute()
 
 const { id } = route.params
 
-const { isLoading, isError, pokemon, errorMessage } = usePokemon(id)
+const { isLoading, isError, pokemon, errorMessage } = usePokemon(id.toString())
 </script>
 
 <template>

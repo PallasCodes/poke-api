@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 
 const router = useRouter()
 
-function goTo() {
+const goTo = () => {
   router.push({
     name: 'pokemon-id',
     params: { id: props.pokemon.id }
@@ -21,9 +21,9 @@ function goTo() {
 <template>
   <div class="pokemon-card" @click="goTo">
     <div>
-      <img :src="$props.pokemon.frontSprite" :alt="$props.pokemon.name">
+      <img :src="pokemon.frontSprite" :alt="pokemon.name">
     </div>
-    <span>{{ $props.pokemon.name }}</span>
+    <span>{{ pokemon.name }}</span>
   </div>
 </template>
 
